@@ -36,6 +36,16 @@ sub index :Path :Args(0) { 		# HOME
     $c->stash(template => 'index.tt', ip => $ip);
 }
 
+=head2 admin
+# Admin page
+=cut
+sub admin : Path('admin') {              # Admin Page
+    my ( $self, $c ) = @_;
+
+    #Admin Page!
+    $c->stash(template => 'admin.tt');
+}     
+
 =head2 default
 
 Standard 404 error page

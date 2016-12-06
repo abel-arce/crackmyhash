@@ -1,1 +1,7 @@
+CrackMyHash
+
+Requirements:
+
+    Catalyst::View::HTML::TT
+
 Run script/crackmyhash_server.pl to test the application.
