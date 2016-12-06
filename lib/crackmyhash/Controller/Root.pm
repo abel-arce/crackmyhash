@@ -28,11 +28,12 @@ The root page (/)
 
 =cut
 
-sub index :Path :Args(0) {
+sub index :Path :Args(0) { 		# HOME
     my ( $self, $c ) = @_;
 
     # Hello World
-    $c->stash(template => 'index.tt');
+    my $ip = $c->request->address;
+    $c->stash(template => 'index.tt', ip => $ip);
 }
 
 =head2 default
