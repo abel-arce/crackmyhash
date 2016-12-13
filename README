@@ -3,5 +3,6 @@ CrackMyHash
 Requirements:
 
     Catalyst::View::HTML::TT
+    DBIx::Class::Schema
 
 Run script/crackmyhash_server.pl to test the application.

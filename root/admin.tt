@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Bootstrap Admin Template : Two Page</title>
+    <title>Admin Crack</title>
     <!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
@@ -27,7 +27,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="http://crackmyhash:10001">See Website</a></li>
+                        <li><a href="http://crackmyhash:8080">See Website</a></li>
                         <li><a href="#">Open Ticket</a></li>
                         <li><a href="#">Report Bug</a></li>
                     </ul>
