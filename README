@@ -4,5 +4,6 @@ Requirements:
 
     Catalyst::View::HTML::TT
     DBIx::Class::Schema
+    DBIx::Class::Schema::Loader
 
 Run script/crackmyhash_server.pl to test the application.
