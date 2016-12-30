@@ -37,13 +37,14 @@ sub index :Path :Args(0) { 		# HOME
 
     # Hello World
     my $ip = $c->request->address;
-    $c->stash(template => 'index.tt', ip => $name_rs->email);
+    #$c->stash(template => 'index.tt', ip => $name_rs->email);
+    $c->stash->{template} = 'index.tt';
 }
 
 =head2 admin
 # Admin page
 =cut
-sub admin : Path('admin') {              # Admin Page
+sub Login : Path('admin') {              # Admin Page
     my ( $self, $c ) = @_;
 
     #Admin Page!
