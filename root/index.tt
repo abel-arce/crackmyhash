@@ -322,10 +322,10 @@ http://www.templatemo.com/tm-473-november
                         <!-- \\ Begin Left Side \\ -->
                         <div class="Leftside">
 			    [% META title = 'Login crack' -%]
-                            <form method="post" action="[% Catalyst.uri_for('Login') %]">
+                            <form method="post" action="[% c.uri_for('login') %]">
                                 <fieldset>
-                                    <p><input type="email" value="" placeholder="EMAIL" class="field"></p>
-                                    <p><input type="password" value="" placeholder="" class="field"></p>
+                                    <p><input type="email" value="" placeholder="EMAIL" name="email" class="field"></p>
+                                    <p><input type="password" value="" placeholder="" name="pass" class="field"></p>
                                     <p><input type="submit" value="Log In" class="button"></p>
                                 </fieldset>
                             </form>

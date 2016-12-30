@@ -31,24 +31,38 @@ The root page (/)
 =cut
 
 sub index :Path :Args(0) { 		# HOME
-   my $schema = crackmyhash::Schema->connect('dbi:mysql:dbname=crackmyhash', 'crackmyhash', 'aa062016');
-   my $name_rs = $schema->resultset('User')->find({ id => 1 });
+   #my $schema = crackmyhash::Schema->connect('dbi:mysql:dbname=crackmyhash', 'crackmyhash', 'aa062016');
+   #my $name_rs = $schema->resultset('User')->find({ id => 1 });
     my ( $self, $c ) = @_;
 
     # Hello World
     my $ip = $c->request->address;
-    #$c->stash(template => 'index.tt', ip => $name_rs->email);
-    $c->stash->{template} = 'index.tt';
+    $c->stash(template => 'index.tt', ip => $ip);
+    #$c->stash->{template} = 'index.tt';
 }
 
 =head2 admin
 # Admin page
 =cut
-sub Login : Path('admin') {              # Admin Page
+sub login : Path('login') {              # Admin Page
     my ( $self, $c ) = @_;
+    
+    my $user = $c->request->params->{email} || 'N/A';
+    my $pass = $c->request->params->{pass} || 'N/A';
+    
+    my $schema = crackmyhash::Schema->connect('dbi:mysql:dbname=crackmyhash', 'crackmyhash', 'aa062016');
+    my $name_rs = $schema->resultset('User')->find({ email => $user });
 
     #Admin Page!
-    $c->stash(template => 'admin.tt');
+    if($name_rs){
+	if($name_rs->email == $user && $name_rs->pass == $pass ){
+    		$c->stash(template => 'admin.tt', user => $name_rs->name);
+	}else{
+		$c->stash(template => 'index.tt');
+	}
+    }else{
+	$c->stash(template => 'index.tt');
+    }
 }     
 
 =head2 default
