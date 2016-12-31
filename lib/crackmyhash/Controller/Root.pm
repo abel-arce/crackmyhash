@@ -2,6 +2,7 @@ package crackmyhash::Controller::Root;
 use Moose;
 use namespace::autoclean;
 use crackmyhash::Schema;
+use Digest::MD5 qw(md5 md5_hex md5_base64);
 
 
 BEGIN { extends 'Catalyst::Controller' }
@@ -46,22 +47,26 @@ sub index :Path :Args(0) { 		# HOME
 =cut
 sub login : Path('login') {              # Admin Page
     my ( $self, $c ) = @_;
-    
+    my $epass;    
+
     my $user = $c->request->params->{email} || 'N/A';
     my $pass = $c->request->params->{pass} || 'N/A';
     
     my $schema = crackmyhash::Schema->connect('dbi:mysql:dbname=crackmyhash', 'crackmyhash', 'aa062016');
     my $name_rs = $schema->resultset('User')->find({ email => $user });
-
+   
     #Admin Page!
     if($name_rs){
-	if($name_rs->email == $user && $name_rs->pass == $pass ){
+	$epass = md5_hex($pass);
+	if($name_rs->email eq $user && $name_rs->pass eq $epass){
     		$c->stash(template => 'admin.tt', user => $name_rs->name);
 	}else{
-		$c->stash(template => 'index.tt');
+		my $ip = $name_rs->pass;
+		$c->stash(template => 'index.tt',ip => "Usuario o clave invalida");
 	}
     }else{
-	$c->stash(template => 'index.tt');
+	#$c->stash(template => 'index.tt', ip => $c->request->address);
+	$c->res->redirect('/');
     }
 }     
 
